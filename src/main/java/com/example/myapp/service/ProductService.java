@@ -18,17 +18,14 @@ public class ProductService  {
     @Autowired
     private FixerIOClient fixerIOClient;
 
-    @Transactional
     public Page<Product> getAllProducts(Pageable pageable) {
         return productRepository.findAll(pageable);
     }
 
-    @Transactional
     public Optional<Product> getProductById(Long id) {
         return productRepository.findById(id);
     }
 
-    @Transactional
     public Product createProduct(String name, String currency, double price) {
 
         double priceInEuro =  calculatePriceInEuro(currency, price);

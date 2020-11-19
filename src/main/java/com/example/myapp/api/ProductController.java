@@ -1,11 +1,12 @@
 package com.example.myapp.api;
+
 import com.example.myapp.exception.NotFoundException;
 import com.example.myapp.model.Product;
 import com.example.myapp.service.ProductService;
 import io.swagger.annotations.Api;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -19,11 +20,11 @@ import javax.validation.constraints.Size;
 
 @RestController
 @Api
+@RequiredArgsConstructor
 @RequestMapping(path = "/products")
 public class ProductController {
 
-    @Autowired
-    private ProductService productService;
+    final  private ProductService productService;
 
     @GetMapping()
     @ResponseStatus(HttpStatus.OK)

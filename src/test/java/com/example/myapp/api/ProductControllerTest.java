@@ -58,8 +58,6 @@ public class ProductControllerTest {
         product2.setPrice(130.67);
         product2.setCategories(Collections.singleton(category));
 
-        Mockito.when(productService.getProductById(10L)).thenReturn(Optional.of(product1));
-        Mockito.when(productService.getProductById(11L)).thenReturn(Optional.of(product2));
         Mockito.when(productService.getAllProducts(Mockito.any())).thenReturn(
                 new PageImpl<>(Arrays.asList(product1, product2), PageRequest.of(2, 20), 100)
         );

@@ -97,7 +97,7 @@ public class CategoryControllerTest {
 
         Mockito.when(categoryService.getCategoryById(Mockito.eq(2L))).thenReturn(Optional.of(category2));
 
-        mockMvc.perform(MockMvcRequestBuilders.get(URL + "/{categoryid}", "2"))
+        mockMvc.perform(MockMvcRequestBuilders.get(URL + "/{categoryId}", "2"))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.name", Matchers.is("C2")));
@@ -131,7 +131,7 @@ public class CategoryControllerTest {
         Mockito.doNothing().when(categoryService).updateCategory(Mockito.eq(category), Mockito.eq("C1"));
 
         String request = "{ \"name\": \"C1\" }";
-        mockMvc.perform(MockMvcRequestBuilders.put(URL + "/{categoryid}", "1").content(request).contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(MockMvcRequestBuilders.put(URL + "/{categoryId}", "1").content(request).contentType(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.name", Matchers.is("C1")))
@@ -149,7 +149,7 @@ public class CategoryControllerTest {
         Mockito.when(categoryService.getCategoryById(Mockito.eq(1L))).thenReturn(Optional.of(category));
         Mockito.doNothing().when(categoryService).deleteCategory(Mockito.eq(category));
 
-        mockMvc.perform(delete(URL + "/{categoryid}", "1"))
+        mockMvc.perform(delete(URL + "/{categoryId}", "1"))
                 .andDo(print())
                 .andExpect(status().isOk());
 
@@ -158,15 +158,15 @@ public class CategoryControllerTest {
 
     @Test
     public void testResourceNotFound() throws Exception {
-        mockMvc.perform(get(URL + "/{categoryid}", "-99999"))
+        mockMvc.perform(get(URL + "/{categoryId}", "-99999"))
                 .andDo(print())
                 .andExpect(status().isNotFound());
 
-        mockMvc.perform(put(URL + "/{categoryid}", "-99999").content("{ \"name\": \"name\" }").contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(put(URL + "/{categoryId}", "-99999").content("{ \"name\": \"name\" }").contentType(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isNotFound());
 
-        mockMvc.perform(delete(URL + "/{categoryid}", "-99999"))
+        mockMvc.perform(delete(URL + "/{categoryId}", "-99999"))
                 .andDo(print())
                 .andExpect(status().isNotFound());
     }

@@ -5,8 +5,8 @@ import com.example.myapp.model.Category;
 import com.example.myapp.service.CategoryService;
 import io.swagger.annotations.Api;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,11 +16,11 @@ import java.util.List;
 
 @RestController
 @Api
+@RequiredArgsConstructor
 @RequestMapping(path = "/categories")
 public class CategoryController {
 
-    @Autowired
-    private CategoryService categoryService;
+    final private CategoryService categoryService;
 
     @GetMapping
     public List<Category> retrieveAllCategories() {

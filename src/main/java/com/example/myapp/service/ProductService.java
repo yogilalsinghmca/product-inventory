@@ -59,4 +59,9 @@ public class ProductService  {
     public void deleteProduct(Product product) {
         productRepository.delete(product);
     }
+
+
+    public Page<Product> getAllProductsFor(Long categoryId, Pageable pageable) {
+       return productRepository.getAllProductsFor(categoryId, pageable);
+    }
 }
